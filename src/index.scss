@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  font-family: "Inter", system-ui;
+}
+
 .wrapper {
   max-width: 1080px;
   margin: 50px auto;
@@ -39,6 +43,28 @@ body {
     padding: 30px;
     width: 220px;
     border-radius: 40px;
+    margin-right: 30px;
+    transition: box-sadow 0.2sec ease-in-out, transform 0.2sec ease-in-out; 
+
+    &:hover {
+      box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.06);
+      transform: translateY(-5px);
+    }
+
+    .favorite {
+      position: absolute;
+      cursor: pointer;
+    }
+
+    span {
+      text-transform: uppercase;
+      opacity: 0.5;
+      font-size: 13px;
+    }
+
+    b {
+      font-size: 14px;
+    }
 
     h5 {
       font-weight: 400;
@@ -54,4 +80,145 @@ body {
     height: 32px;
     width: 32px;
     cursor: pointer;
+  }
+
+  .search-block {
+    border: 1px solid #f3f3f3;
+    padding: 0 15px;
+    border-radius: 10px;
+
+    input {
+      width: 200px;
+      border: 0;
+      padding: 13px;
+      font-size: 16px;
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+  .drawer {
+    height: 100%;
+    width: 420px;
+    position: absolute;
+    background: #ffff;
+    box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+    right: 0;
+    padding: 30px;
+
+    .items {
+      overflow: auto;
+      margin-bottom: 40px;
+      flex: 1;
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .cartTotalBlock {
+   ul {
+    display: block;
+    margin-bottom: 40px !important;
+
+    li {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 20px;
+
+      div {
+        flex: 1;
+        height: 1px;
+        border-bottom: 1px dashed #dfdfdf;
+        position: absolute;
+        top: -4px;
+        margin: 0 7px;
+      }
+    }
+   }
+
+   .greenButton {
+    position: relative;
+
+    &:hover {
+      img {
+        transform: translateX(5px);
+      }
+    }
+    
+    img {
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      transition: transform 0.2s ease-in-out;
+    }
+   }
+  }
+
+  .greenButton {
+    button {
+      width: 100%;
+      height: 55px;
+      background: #9dd558;
+      border-radius: 18px;
+      border: 0;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+  
+      &:hover {
+        background: lighten(#9dd558, 5%);
+      }
+  
+      &:active {
+        background: darken(#9dd558, 5%);
+      } 
+     }
+  }
+
+  .cardItem {
+    border: 1px solid #f3f3f3;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0 20px;
+
+    .cartItemImg {
+      height: 70px;
+      width: 70px;
+      background-size: contain;
+      background-position: 0 -3px;
+      background-repeat: no-repeat;
+      margin-right: 20px;
+
+    }
+
+    p {
+      font-size: 16px;
+      margin: 0 ;
+    }
+
+    b {
+      font-size: 14px;
+    }
+
+    .removeBtn {
+      opacity: 0.5;
+      transition: opacity 0.2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
