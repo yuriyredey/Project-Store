@@ -1,9 +1,10 @@
-function Drawer() {
+function Drawer(props) {
+  console.log(props)
     return (
         <div style={{display: "none"}} className="overlay">
         <div className="drawer">
           <h2 className="mb-30 d-flex justify-between">
-            Cart <img className="removeBtn cu-p" src="/img/btn-remove.svg" alt="Remove"/></h2>
+            Cart <img onClick={props.onCloseCart} className="removeBtn cu-p" src="/img/btn-remove.svg" alt="Remove"/></h2>
       </div>
         <div className="items">
         <div className="cartItem d-flex align-center">
@@ -13,7 +14,7 @@ function Drawer() {
             <p className="mb-5">Nike Air Max 270</p>
             <b>179.99$</b>
           </div>
-          <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
+          <img className="removeBtn" src="/img/btn-remove.svg" alt="Close"/>
         </div>
 
         <div className="cartItem d-flex align-center">
@@ -43,7 +44,6 @@ function Drawer() {
         </div>
         </div>
         </div>
-        
     )
 }
 
