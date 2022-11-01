@@ -1,9 +1,10 @@
-import Cart from './components/Cart';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Route} from 'react-router-dom';
+import Home from './pages/Home';
+import Favorites from './pages/Favorites';
 
 const handelError = (err) => {
   console.log("Ops...");
@@ -22,14 +23,21 @@ function App() {
       url:('https://635c1c82fc2595be2640e417.mockapi.io/items')
      })
      .then((response) => {
-      setICartItems(response.data);
+      setItems(response.data);
      });
      axios({
       method: 'get',
       url: ('https://635c1c82fc2595be2640e417.mockapi.io/cart')
      })
      .then((response) => {
-      setItems(response.data);
+      setCartItems(response.data);
+     });
+     axios({
+      method: 'get',
+      url: ('https://635c1c82fc2595be2640e417.mockapi.io/favorites')
+     })
+     .then((response) =>  {
+      setFavorites(response.data);
      }).catch(handelError)
     },[])
 
@@ -51,13 +59,30 @@ function App() {
        setCartItems((prev) => prev.filter(item.id !== id))
     }
 
-    const onAddToFavorite = (obj) => {
+    const onAddToFavorite =  async (obj) => {
+      // console.log(obj)
+      try {
+        if(favorites.find((favObj) => favObj.id === id)) {
+          axios({
+            method: 'delete',
+            url:(`https://635c1c82fc2595be2640e417.mockapi.io/favorites/${obj.id}`)
+          })
+        } else {
+          const {data} = await axios({
+            method: 'post',
+            url:('https://635c1c82fc2595be2640e417.mockapi.io/favorites/', obj)
+          })
+          setFavorites((prev) => [...prev, data])
+     }  
+      } catch (error) {
+        alert('Adding to favorites is failing');
+      }
       axios({
         method: 'post',
         url:('https://635c1c82fc2595be2640e417.mockapi.io/cart/', obj)
       });
       setFavorites((prev) => [...prev, obj])
-    }
+    };
 
     const onChangeSerchInput = (event) => {
       console.log(event.target.value);
@@ -67,35 +92,21 @@ function App() {
   return (
     <div className="wrapper clear">
      {cartOpened ? <Drawer items={cartItems}  onCloseCart={() => setCartOpened(false)} onRemove={onRemoveItem} /> : null}
-    <Route path='/'>
-        <Header onClickCart={() => setCartOpened(true)} />
-    </Route>
-      <div className="content p-40">
-        <div className="d-flex align-center justify-between mb-40">
-        <h1>{serchValue ? `Search: "${serchValue}"` : "Our Sneakers"}</h1>
-        <div className="search-block d-flex">
-          <img src="/img/search.svg" alt="Search"/>
-          {serchValue && (
-           <img onclick={() => setSeachValue("")}
-           className="clear cu-p" src="/img/btn-remove.svg" alt="Clear"/>)}
-          <input onChange={onChangeSearchValue} value={serchValue} placeholder="Search..."/>
-        </div>
-       </div>
-       <div className="d-flex flex-wrap">
-        
-        {items.filter((item) => item.title.toLowerCase().includes(serchValue.toLowerCase()))
-        .map((item, index) => (
-          <Cart 
-          key={index}
-          title={item.title}
-          price={item.price}
-          imageUrl={item.imageUrl}
-          onClickFavorite={onAddToFavorite(obj)}
-          onClickAdd={(obj) => console.log(obj)}
+     <Header onClickCart={() => setCartOpened(true)} />
+    <Route path='/' exact>
+        <Home 
+        items={items} 
+        serchValue={serchValue} 
+        setSeachValue={setSeachValue} 
+        onChangeSerchInput={onChangeSerchInput}
+        onAddToFavorite={onAddToFavorite}
+        onAddToCart={onAddToCart}
         />
-        ))}
-       </div>
-      </div>
+    </Route>
+
+    <Route path='/favorites' exact>
+       <Favorites items={favorites} onAddToFavorite={onAddToFavorite}/>
+    </Route>
     </div>
   );
 }

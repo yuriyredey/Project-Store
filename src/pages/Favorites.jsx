@@ -1,6 +1,6 @@
-import Cart from '../components/Cart';
+import Cart from "../components/Cart";
 
-function Home({items, serchValue, setSeachValue, onChangeSearchInput, onAddToFavorite, onAddToCart}) {
+function Favorites({items, onAddToFavorite}) {
     return (
         <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
@@ -14,16 +14,15 @@ function Home({items, serchValue, setSeachValue, onChangeSearchInput, onAddToFav
         </div>
        </div>
        <div className="d-flex flex-wrap">
-        
-        {items.filter((item) => item.title.toLowerCase().includes(serchValue.toLowerCase()))
+       {items
         .map((item, index) => (
           <Cart 
           key={index}
           title={item.title}
           price={item.price}
           imageUrl={item.imageUrl}
-          onClickFavorite={onAddToFavorite(obj)}
-          onClickAdd={(obj) => console.log(obj)}
+          favorited={true}
+          onFavorite={onAddToFavorite}
         />
         ))}
        </div>
@@ -31,4 +30,4 @@ function Home({items, serchValue, setSeachValue, onChangeSearchInput, onAddToFav
     )
 }
 
-export default Home;
+export default Favorites;

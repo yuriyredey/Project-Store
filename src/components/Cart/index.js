@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import styles from './Cart.module.scss';
-console.log(styles)
+ // console.log(styles)
 
-function Cart({onClickFavorite, onClickAdd, title, imageUrl, price}) {
-  console.log(props)
+function Cart({onFavorite, onClickAdd, title, imageUrl, price, id, favorited = false}) {
+  // console.log(favorited)
+  // console.log(props)
 
   const [isAdded, setIsAdded] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(favorited);
 
   const handelClick = () => {
-    onClickAdd(title, price, imageUrl)
+    onClickAdd(title, price, imageUrl, id)
     setIsAdded(!isAdded)
   };
   const onClickFavorite = () => {
-    onClickFavorite(title, price, imageUrl);
+    onFavorite(title, price, imageUrl);
     setIsFavorite(!isFavorite);
   }
   console.log(isAdded)

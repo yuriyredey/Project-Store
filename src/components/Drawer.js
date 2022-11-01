@@ -10,7 +10,7 @@ function Drawer({onClose,onRemove, items = []}) {
                 <div><div className="items">
                 {
                 items.map((obj) => (
-                  <div className="cartItem d-flex align-center">
+                  <div key={obj.id} className="cartItem d-flex align-center">
              <div style={{backgroundImage: `url(${obj.imageUrl})` }} 
              className="cartItemImg"></div>
             <div className="mr-20 flex">
@@ -39,11 +39,11 @@ function Drawer({onClose,onRemove, items = []}) {
                  </div></div>
               )
             : (
-              <div class="cartEmpty d-flex align-center justify-center flex-column flex">
-              <img class="mb-20" width="120px" height="120px" src="/img/empty-cart.jpg" alt="Empty" />
+              <div className="cartEmpty d-flex align-center justify-center flex-column flex">
+              <img className="mb-20" width="120px" height="120px" src="/img/empty-cart.jpg" alt="Empty" />
               <h3>Cart is empty</h3>
-              <p class="opacity-6">Add at list one product, to make a order</p>
-              <button onClick={onClose} class="greenButton">
+              <p className="opacity-6">Add at list one product, to make a order</p>
+              <button onClick={onClose} className="greenButton">
                 <img scr= "/img/arrow.svg" alt="Arrow" /> Go back
               </button>
             </div>
