@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import Cart from "../components/Cart";
+import  AppContext  from "../contex";
 
-function Favorites({items, onAddToFavorite}) {
+function Favorites({onAddToFavorite}) {
+  const {Favorites} = useContext(AppContext);
+  /
+
     return (
         <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
@@ -14,7 +19,7 @@ function Favorites({items, onAddToFavorite}) {
         </div>
        </div>
        <div className="d-flex flex-wrap">
-       {items
+       {favorites
         .map((item, index) => (
           <Cart 
           key={index}

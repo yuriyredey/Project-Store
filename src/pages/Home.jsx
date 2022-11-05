@@ -1,6 +1,33 @@
+import { useContext } from 'react';
 import Cart from '../components/Cart';
+import AppContext from '../contex';
 
-function Home({items, serchValue, setSeachValue, onChangeSearchInput, onAddToFavorite, onAddToCart}) {
+function Home({
+  items, 
+  cartItems, 
+  serchValue,
+   setSeachValue, 
+   onChangeSearchInput, 
+   onAddToFavorite, 
+   onAddToCart, 
+   isLoading
+  }) {
+    const {isItemAdded} = useContext(AppContext)
+
+  const renderItems = () => {
+    return(isLoading ? [...Array(10)] : items.filter((item) => item.title.toLowerCase().includes(serchValue.toLowerCase()))) 
+        .map((item, index) => (
+          <Cart 
+          key={index}
+          onClickFavorite={(obj) => onAddToFavorite(obj)}
+          onClickAdd={(obj) => onAddToCart(obj)}
+          added={isItemAdded(item.id)}
+          loading={false}
+          {...item}
+        />
+        ));
+  };
+
     return (
         <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
@@ -13,19 +40,9 @@ function Home({items, serchValue, setSeachValue, onChangeSearchInput, onAddToFav
           <input onChange={onChangeSearchValue} value={serchValue} placeholder="Search..."/>
         </div>
        </div>
+       
        <div className="d-flex flex-wrap">
-        
-        {items.filter((item) => item.title.toLowerCase().includes(serchValue.toLowerCase()))
-        .map((item, index) => (
-          <Cart 
-          key={index}
-          title={item.title}
-          price={item.price}
-          imageUrl={item.imageUrl}
-          onClickFavorite={onAddToFavorite(obj)}
-          onClickAdd={(obj) => console.log(obj)}
-        />
-        ))}
+        {renderItems()}
        </div>
       </div>
     )
