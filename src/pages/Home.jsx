@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+import React from 'react';
 import Cart from '../components/Cart';
-import AppContext from '../contex';
+
+
 
 function Home({
-  items, 
-  cartItems, 
+  items,
   serchValue,
    setSeachValue, 
    onChangeSearchInput, 
@@ -12,7 +12,6 @@ function Home({
    onAddToCart, 
    isLoading
   }) {
-    const {isItemAdded} = useContext(AppContext)
 
   const renderItems = () => {
     return(isLoading ? [...Array(10)] : items.filter((item) => item.title.toLowerCase().includes(serchValue.toLowerCase()))) 
@@ -21,7 +20,6 @@ function Home({
           key={index}
           onClickFavorite={(obj) => onAddToFavorite(obj)}
           onClickAdd={(obj) => onAddToCart(obj)}
-          added={isItemAdded(item.id)}
           loading={false}
           {...item}
         />
@@ -37,7 +35,7 @@ function Home({
           {serchValue && (
            <img onclick={() => setSeachValue("")}
            className="clear cu-p" src="/img/btn-remove.svg" alt="Clear"/>)}
-          <input onChange={onChangeSearchValue} value={serchValue} placeholder="Search..."/>
+          <input onChange={onChangeSearchInput} value={serchValue} placeholder="Search..."/>
         </div>
        </div>
        
@@ -45,7 +43,7 @@ function Home({
         {renderItems()}
        </div>
       </div>
-    )
+    );
 }
 
 export default Home;
