@@ -6,7 +6,6 @@ import axios from 'axios';
 import {Route} from 'react-router-dom';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
-import { createContext } from 'react';
 import AppContext from './contex';
 import Orders from './pages/Orders';
 
@@ -100,7 +99,7 @@ function App() {
        }
      };
     const onChangeSerchInput = (event) => {
-      console.log(event.target.value);
+      // console.log(event.target.value);
       setSeachValue(event.target.value);
     };
 
@@ -126,7 +125,7 @@ function App() {
       onRemove={onRemoveItem} 
       opened={cartOpened} /> 
      <Header onClickCart={() => setCartOpened(true)} />
-    <Route path='/' exact>
+    <Route path='' exact>
         <Home 
         items={items}
         cartItems={cartItems}
@@ -139,11 +138,11 @@ function App() {
         />
     </Route>
 
-    <Route path='/favorites' exact>
+    <Route path='favorites' exact>
        <Favorites />
     </Route>
 
-    <Route path='/orders' exact>
+    <Route path='orders' exact>
        <Orders />
     </Route>
     </div>

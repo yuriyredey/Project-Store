@@ -54,7 +54,7 @@ function Cart({
                  <>
           {onFavorite && ( 
           <div className={styles.favorite} onClick={onClickFavorite}>
-        <img src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"} alt="Unliked"/>
+        <img src={isFavorite ? "img/liked.svg" : "img/unliked.svg"} alt="Unliked"/>
        </div>
        )}
           <img width="100%" height={135} src={this.props.imageUrl} alt="Sneakers"/>
@@ -66,7 +66,7 @@ function Cart({
             </div>
             {onClickAdd && (
               <img className={styles.plus} 
-              onClick={handelClick} src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"} 
+              onClick={handelClick} src={isItemAdded(id) ? "img/btn-checked.svg" : "img/btn-plus.svg"} 
               alt="Plus" />
             )}
           </div>

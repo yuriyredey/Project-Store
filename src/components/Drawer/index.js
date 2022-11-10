@@ -40,7 +40,7 @@ function Drawer({onClose,onRemove, items = [], opened}) {
         <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
         <div className={styles.drawer}> 
           <h2 className="mb-30 d-flex justify-between">
-            Cart <img onClick={onClose} className="removeBtn cu-p" src="/img/btn-remove.svg" alt="Close"/></h2>
+            Cart <img onClick={onClose} className="removeBtn cu-p" src="img/btn-remove.svg" alt="Close"/></h2>
 
             {items.length > 0 ?  (
                 <div className="d-flex flex-column">
@@ -54,7 +54,7 @@ function Drawer({onClose,onRemove, items = [], opened}) {
               <p className="mb-5">{obj.title}</p>
               <b>{obj.price} $</b>
             </div>
-            <img onClick={() => onRemove(obj.id)} className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
+            <img onClick={() => onRemove(obj.id)} className="removeBtn" src="img/btn-remove.svg" alt="Remove"/>
           </div>
                 ))}
               </div> 
@@ -72,13 +72,13 @@ function Drawer({onClose,onRemove, items = [], opened}) {
                    </li>
                  </ul>
                  <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
-                   Make order <img src="/img/arrow.svg" alt="Arrow"/></button>
+                   Make order <img src="img/arrow.svg" alt="Arrow"/></button>
                  </div></div>
               ) : (
               <Info 
               title={isOrderComplete ? "Order Completed!" : "Cart is empty"}
               description={isOrderComplete ? `Your oreder #${orderId}`  : "Add at list one product, to make a order"}
-              image={isOrderComplete ? "/img/complete-order.jpg" : "/img/empy-cart.jpg"}/>
+              image={isOrderComplete ? "img/complete-order.jpg" : "img/empy-cart.jpg"}/>
             )}
           </div>
         </div>

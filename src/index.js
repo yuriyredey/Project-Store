@@ -1,16 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
+import  ReactDOM from "react-dom";
 import './index.scss';
 import 'macro-css';
 import App from './App';
-import {BrowserRouter as Router} from 'react-router-dom';
-
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router.StrictMode>
+    <HashRouter>
     <Router>
       <App />
     </Router>
-  </React.StrictMode>,
+    </HashRouter>
+  </Router.StrictMode>,
   document.getElementById('root'),
 );
+
