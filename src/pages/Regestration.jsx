@@ -57,9 +57,11 @@ const Regestration = () => {
                 <h1>Regestration</h1>
                 <input onChange={e => emailHandler(e)} value={email} onBlur={e => blurHandler(e)} name='email' type='text' placeholder='Enter your email...' />
                 {(passwordDone && passwordError) && <div style={{color: 'red'}}>{passwordError}</div>}
-                <input onChange={e => passwordHandler(e)} value={password} onBlur={e => blurHadler(e)} name='password' type='password' placeholder='Enter your password...' />
+                <input onChange={e => passwordHandler(e)} value={password} onBlur={e => blurHandler(e)} name='password' type='password' placeholder='Enter your password...' />
                 <button disabled={!formValid} type='submit'>Regestration</button>
             </form>
         </div>
     );
 };
+
+export default Regestration;

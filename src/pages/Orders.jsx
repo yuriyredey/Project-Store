@@ -14,7 +14,7 @@ function Orders() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get('https://635c1c82fc2595be2640e417.mockapi.io/orders');
+        const { data } = await axios.get('https://635c1c82fc2595be2640e417.mockapi.io/orders' );
     setOrders(data.reduce((prev, obj) => [...prev, ...obj.items], []));
     setIsLoading(false);
       } catch (error) { 
@@ -22,12 +22,13 @@ function Orders() {
         console.error(error);
       }
     })();
+
   }, [])
 
     return (
         <div className="content p-40">
         <div className="d-flex align-center justify-between mb-40">
-        <h1>"`My orders"</h1>
+        <h1>"My orders"</h1>
        </div>
        <div className="d-flex flex-wrap">
        {(isLoading ? [...Array(10)] : orders).map((item, index) => (
