@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import AppContext from './contex';
 import Orders from './pages/Orders';
-
+import Regestration from './pages/Regestration';
 
 
 const handelError = (err) => {
@@ -144,6 +144,9 @@ function App() {
 
     <Route path='orders' exact>
        <Orders />
+    </Route>
+    <Route path='regestration' exact>
+      <Regestration />
     </Route>
     </div>
     </AppContext.Provider>
